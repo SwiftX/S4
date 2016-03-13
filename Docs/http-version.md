@@ -3,7 +3,10 @@
 The `HTTPVersion` type represents an HTTP version.
 
 ```swift
-public typealias HTTPVersion = (major: Int, minor: Int)
+public protocol HTTPVersion {
+    var major: Int { get }
+    var minor: Int { get }
+}
 ```
 
 ## Motivation
