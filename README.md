@@ -1,5 +1,7 @@
 # Swift X
 
+[![Join the chat at https://gitter.im/swiftx/s4](https://badges.gitter.im/swiftx/s4.svg)](https://gitter.im/swiftx/s4?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Cross project standards for Swift.
 
 ## Mission
