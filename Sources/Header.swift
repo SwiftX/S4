@@ -1,4 +1,4 @@
-public struct HeaderValues {
+public struct Header {
     public var values: [String]
 
     public init(_ values: [String]) {
@@ -6,19 +6,19 @@ public struct HeaderValues {
     }
 }
 
-extension HeaderValues {
+extension Header {
     public init(_ value: String) {
         self.init([value])
     }
 }
 
 #if swift(>=3.0)
-extension HeaderValues: RangeReplaceableCollection {}
+extension Header: RangeReplaceableCollection {}
 #else
-extension HeaderValues: RangeReplaceableCollectionType {}
+extension Header: RangeReplaceableCollectionType {}
 #endif
 
-extension HeaderValues {
+extension Header {
     public init() {
         self.init([])
     }
@@ -132,12 +132,12 @@ extension HeaderValues {
 }
 
 #if swift(>=3.0)
-extension HeaderValues: MutableCollection {}
+extension Header: MutableCollection {}
 #else
-extension HeaderValues: MutableCollectionType {}
+extension Header: MutableCollectionType {}
 #endif
 
-extension HeaderValues {
+extension Header {
     #if swift(>=3.0)
     public func makeIterator() -> IndexingIterator<[String]> {
         return values.makeIterator()
@@ -181,25 +181,19 @@ extension HeaderValues {
     }
 }
 
-extension HeaderValues: NilLiteralConvertible {
-    public init(nilLiteral: ()) {
-        self.init()
-    }
-}
-
-extension HeaderValues: IntegerLiteralConvertible {
+extension Header: IntegerLiteralConvertible {
     public init(integerLiteral value: IntegerLiteralType) {
         self.init(String(value))
     }
 }
 
-extension HeaderValues: FloatLiteralConvertible {
+extension Header: FloatLiteralConvertible {
     public init(floatLiteral value: FloatLiteralType) {
         self.init(String(value))
     }
 }
 
-extension HeaderValues: StringLiteralConvertible {
+extension Header: StringLiteralConvertible {
     public init(stringLiteral string: String) {
         self.init(string)
     }
@@ -213,14 +207,14 @@ extension HeaderValues: StringLiteralConvertible {
     }
 }
 
-extension HeaderValues: ArrayLiteralConvertible {
+extension Header: ArrayLiteralConvertible {
     public init(arrayLiteral elements: String...) {
         self.init(elements)
     }
 }
 
-extension HeaderValues: Equatable {}
+extension Header: Equatable {}
 
-public func ==(lhs: HeaderValues, rhs: HeaderValues) -> Bool {
+public func ==(lhs: Header, rhs: Header) -> Bool {
     return lhs.values == rhs.values
 }

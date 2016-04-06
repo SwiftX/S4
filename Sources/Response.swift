@@ -13,6 +13,16 @@ public struct Response: Message {
     }
 }
 
+public protocol ResponseInitializable {
+    init(response: Response)
+}
+
+public protocol ResponseRepresentable {
+    var response: Response { get }
+}
+
+public protocol ResponseConvertible: ResponseInitializable, ResponseRepresentable {}
+
 extension Response {
     public init(status: Status = .ok, headers: Headers = [:], body: Stream) {
         self.init(
@@ -33,7 +43,7 @@ extension Response {
             body: .buffer(body)
         )
 
-        self.headers["Content-Length"] = HeaderValues(body.count.description)
+        self.headers["Content-Length"] = Header(body.count.description)
     }
 
     public init(status: Status = .ok, headers: Headers = [:], body: Stream throws -> Void) {

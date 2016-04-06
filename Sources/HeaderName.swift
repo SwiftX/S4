@@ -1,1 +1,0 @@
-public typealias HeaderName = CaseInsensitiveString

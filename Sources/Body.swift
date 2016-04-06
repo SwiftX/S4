@@ -1,16 +1,16 @@
 /**
     Represents the body of the HTTP message.
-    
-    An HTTP message body contains the bytes of data that 
+
+    An HTTP message body contains the bytes of data that
     are transmitted immediately following the headers.
- 
+
     - buffer:   Simplest type of HTTP message body.
                 Represents a `Data` object containing
                 a byte array.
- 
+
     - receiver: Contains a `Stream` that can be drained
                 in chunks to access the body's data.
- 
+
     - sender:   Contains a closure that accepts a `Stream`
                 object to which the body's data should be sent.
 
@@ -24,7 +24,7 @@ public enum Body {
 extension Body {
     /**
         Converts the body's contents into a `Data` buffer.
-        
+
         If the body is a receiver or sender type,
         it will be drained.
     */

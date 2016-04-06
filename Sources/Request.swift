@@ -15,6 +15,16 @@ public struct Request: Message {
     }
 }
 
+public protocol RequestInitializable {
+    init(request: Request)
+}
+
+public protocol RequestRepresentable {
+    var request: Request { get }
+}
+
+public protocol RequestConvertible: RequestInitializable, RequestRepresentable {}
+
 extension Request {
     public init(method: Method = .get, uri: URI = URI(path: "/"), headers: Headers = [:], body: Stream) {
         self.init(
@@ -37,7 +47,7 @@ extension Request {
             body: .buffer(body)
         )
 
-        self.headers["Content-Length"] = HeaderValues(body.count.description)
+        self.headers["Content-Length"] = Header(body.count.description)
     }
 
     public init(method: Method = .get, uri: URI = URI(path: "/"), headers: Headers = [:], body: Stream throws -> Void) {

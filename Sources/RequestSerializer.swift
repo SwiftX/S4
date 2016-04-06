@@ -1,3 +1,3 @@
 public protocol RequestSerializer {
-    func serialize(request: Request, @noescape send: Data throws -> Void) throws
+    func serialize(request: Request, to stream: Stream) throws
 }
