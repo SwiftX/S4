@@ -33,7 +33,7 @@ extension Body {
         case .buffer(let data):
             return data
         case .receiver(let receiver):
-            let data = Drain(receiver).data
+            let data = Drain(for: receiver, timingOut: -1).data
             self = .buffer(data)
             return data
         case .sender(let sender):
@@ -63,7 +63,7 @@ extension Body {
         case .receiver(let stream):
             return stream
         case .buffer(let data):
-            let stream = Drain(data)
+            let stream = Drain(for: data)
             self = .receiver(stream)
             return stream
         case .sender(let sender):
@@ -90,14 +90,14 @@ extension Body {
         switch self {
         case .buffer(let data):
             let closure: (Stream throws -> Void) = { sender in
-                try sender.send(data)
+                try sender.send(data, timingOut: -1)
             }
             self = .sender(closure)
             return closure
         case .receiver(let receiver):
             let closure: (Stream throws -> Void) = { sender in
-                let data = Drain(receiver).data
-                try sender.send(data)
+                let data = Drain(for: receiver, timingOut: -1).data
+                try sender.send(data, timingOut: -1)
             }
             self = .sender(closure)
             return closure
