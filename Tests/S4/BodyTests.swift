@@ -47,7 +47,7 @@ class BodyTests: XCTestCase {
         }
 
         bodyForReceiver.forceReopenDrain()
-        let receiverDrain = Drain(for try! bodyForReceiver.becomeReceiver(), timingOut: -1)
+        let receiverDrain = Drain(for: try! bodyForReceiver.becomeReceiver(), timingOut: -1)
         XCTAssert(data == receiverDrain.data, "Garbled receiver bytes")
         switch bodyForReceiver {
         case .receiver(let stream):
