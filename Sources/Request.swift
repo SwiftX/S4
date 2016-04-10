@@ -4,7 +4,7 @@ public struct Request: Message {
     public var version: Version
     public var headers: Headers
     public var body: Body
-    public var storage: Storage = [:]
+    public var storage: [String: Any] = [:]
 
     public init(method: Method, uri: URI, version: Version, headers: Headers, body: Body) {
         self.method = method
@@ -28,7 +28,7 @@ extension Request {
         self.headers["Transfer-Encoding"] = "chunked"
     }
 
-    public init(method: Method = .get, uri: URI = URI(path: "/"), headers: Headers = [:], body: Data = nil) {
+    public init(method: Method = .get, uri: URI = URI(path: "/"), headers: Headers = [:], body: Data = Data()) {
         self.init(
             method: method,
             uri: uri,

@@ -3,7 +3,7 @@ public struct Response: Message {
     public var status: Status
     public var headers: Headers
     public var body: Body
-    public var storage: Storage = [:]
+    public var storage: [String: Any] = [:]
 
     public init(version: Version, status: Status, headers: Headers, body: Body) {
         self.version = version
@@ -25,7 +25,7 @@ extension Response {
         self.headers["Transfer-Encoding"] = "chunked"
     }
 
-    public init(status: Status = .ok, headers: Headers = [:], body: Data = nil) {
+    public init(status: Status = .ok, headers: Headers = [:], body: Data = Data()) {
         self.init(
             version: Version(major: 1, minor: 1),
             status: status,
