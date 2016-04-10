@@ -35,7 +35,7 @@ extension Request {
             body: .buffer(body)
         )
 
-        self.headers["Content-Length"] = Header(body.count.description)
+        self.headers["Content-Length"] += body.count.description
     }
 
     public init(method: Method = .get, uri: URI = URI(path: "/"), headers: Headers = [:], body: Stream) {
