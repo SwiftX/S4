@@ -18,13 +18,7 @@ extension Headers: DictionaryLiteralConvertible {
     }
 }
 
-#if swift(>=3.0)
-extension Headers: Sequence {}
-#else
-extension Headers: SequenceType {}
-#endif
-
-extension Headers {
+extension Headers: Sequence {
     #if swift(>=3.0)
     public func makeIterator() -> DictionaryIterator<CaseInsensitiveString, Header> {
         return headers.makeIterator()
@@ -43,13 +37,23 @@ extension Headers {
         return headers.isEmpty
     }
 
-    public subscript(name: CaseInsensitiveString) -> Header {
+    public subscript(field: CaseInsensitiveString) -> Header {
         get {
-            return headers[name] ?? []
+            return headers[field] ?? []
         }
 
-        set(headerValues) {
-            headers[name] = headerValues
+        set(header) {
+            headers[field] = header
+        }
+    }
+
+    public subscript(field: CaseInsensitiveStringRepresentable) -> Header {
+        get {
+            return headers[field.caseInsensitiveString] ?? []
+        }
+
+        set(header) {
+            headers[field.caseInsensitiveString] = header
         }
     }
 }
