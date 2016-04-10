@@ -28,7 +28,7 @@ extension Body {
         If the body is a receiver or sender type,
         it will be drained.
     */
-    public mutating func becomeBuffer(timingOut deadline: Double) throws -> Data {
+    public mutating func becomeBuffer(timingOut deadline: Double = .never) throws -> Data {
         switch self {
         case .buffer(let data):
             return data
@@ -86,7 +86,7 @@ extension Body {
         Converts the body's contents into a closure
         that accepts a `Stream`.
     */
-    public mutating func becomeSender(timingOut deadline: Double) -> (Stream throws -> Void) {
+    public mutating func becomeSender(timingOut deadline: Double = .never) -> (Stream throws -> Void) {
         switch self {
         case .buffer(let data):
             let closure: (Stream throws -> Void) = { sender in

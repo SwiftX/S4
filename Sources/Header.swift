@@ -6,6 +6,10 @@ public struct Header {
     }
 }
 
+public protocol HeaderRepresentable {
+    var header: Header { get }
+}
+
 extension Header {
     public init(_ value: String) {
         self.init([value])
@@ -102,4 +106,45 @@ extension Header: Equatable {}
 
 public func ==(lhs: Header, rhs: Header) -> Bool {
     return lhs.values == rhs.values
+}
+
+extension String: HeaderRepresentable {
+    public var header: Header {
+        return Header(self)
+    }
+}
+
+#if swift(>=3.0)
+    public func += (lhs: inout Header, rhs: Header) {
+        return lhs.values += rhs.values
+    }
+#else
+    public func += (inout lhs: Header, rhs: Header) {
+    return lhs.values += rhs.values
+    }
+#endif
+
+#if swift(>=3.0)
+    public func += (lhs: inout Header, rhs: HeaderRepresentable) {
+        return lhs += rhs.header
+    }
+#else
+    public func += (inout lhs: Header, rhs: HeaderRepresentable) {
+    return lhs += rhs.header
+    }
+#endif
+
+@warn_unused_result
+public func + (lhs: Header, rhs: Header) -> Header {
+    return Header(lhs.values + rhs.values)
+}
+
+@warn_unused_result
+public func + (lhs: Header, rhs: HeaderRepresentable) -> Header {
+    return lhs + rhs.header
+}
+
+@warn_unused_result
+public func + (lhs: HeaderRepresentable, rhs: Header) -> Header {
+    return lhs.header + rhs
 }

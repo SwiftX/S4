@@ -21,7 +21,7 @@ class BodyTests: XCTestCase {
     }
 
     func testReceiver() {
-        let drain = Drain(self.data)
+        let drain = Drain(for: self.data)
         let receiver = Body.receiver(drain)
 
         testBodyProperties(receiver)
@@ -47,12 +47,12 @@ class BodyTests: XCTestCase {
         }
 
         bodyForReceiver.forceReopenDrain()
-        let receiverDrain = Drain(try! bodyForReceiver.becomeReceiver())
+        let receiverDrain = Drain(for: try! bodyForReceiver.becomeReceiver())
         XCTAssert(data == receiverDrain.data, "Garbled receiver bytes")
         switch bodyForReceiver {
         case .receiver(let stream):
             bodyForReceiver.forceReopenDrain()
-            let receiverDrain = Drain(stream)
+            let receiverDrain = Drain(for: stream)
             XCTAssert(data == receiverDrain.data, "Garbed receiver bytes")
         default:
             XCTFail("Incorrect type")
