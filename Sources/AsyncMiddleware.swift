@@ -12,7 +12,7 @@ extension AsyncMiddleware {
 
 #if swift(>=3.0)
 extension Collection where Self.Iterator.Element == AsyncMiddleware {
-    public func chain(tp responder: AsyncResponder) -> AsyncResponder {
+    public func chain(to responder: AsyncResponder) -> AsyncResponder {
         var responder = responder
 
         for middleware in self.reversed() {

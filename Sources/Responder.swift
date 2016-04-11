@@ -8,7 +8,7 @@ extension Responder {
     }
 }
 
-public typealias Respond = Request throws -> Response
+public typealias Respond = (to: Request) throws -> Response
 
 public struct BasicResponder: Responder {
     let respond: Respond
@@ -18,6 +18,6 @@ public struct BasicResponder: Responder {
     }
 
     public func respond(to request: Request) throws -> Response {
-        return try respond(to: request)
+        return try self.respond(to: request)
     }
 }
