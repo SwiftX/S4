@@ -5,6 +5,7 @@ public struct Request: Message {
     public var headers: Headers
     public var body: Body
     public var storage: [String: Any] = [:]
+    public var isWebSocket: Bool = false
 
     public init(method: Method, uri: URI, version: Version, headers: Headers, body: Body) {
         self.method = method
