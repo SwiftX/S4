@@ -13,7 +13,7 @@ import PackageDescription
 
 let package = Package(
     dependencies: [
-        .Package(url: "https://github.com/open-swift/S4.git", majorVersion: 0, minor: 3)
+        .Package(url: "https://github.com/open-swift/S4.git", majorVersion: 0, minor: 5)
     ]
 )
 ```
