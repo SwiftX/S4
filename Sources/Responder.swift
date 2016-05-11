@@ -3,7 +3,7 @@ public protocol Responder: AsyncResponder {
 }
 
 extension Responder {
-    public func respond(to request: Request, result: (Void throws -> Response) -> Void) {
+    public func respond(to request: Request, result: ((Void) throws -> Response) -> Void) {
         result { try self.respond(to: request) }
     }
 }

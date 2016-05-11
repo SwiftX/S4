@@ -18,7 +18,7 @@
 public enum Body {
     case buffer(Data)
     case receiver(Stream)
-    case sender(Stream throws -> Void)
+    case sender((Stream) throws -> Void)
 }
 
 extension Body {
@@ -86,16 +86,16 @@ extension Body {
         Converts the body's contents into a closure
         that accepts a `Stream`.
     */
-    public mutating func becomeSender(timingOut deadline: Double = .never) -> (Stream throws -> Void) {
+    public mutating func becomeSender(timingOut deadline: Double = .never) -> ((Stream) throws -> Void) {
         switch self {
         case .buffer(let data):
-            let closure: (Stream throws -> Void) = { sender in
+            let closure: ((Stream) throws -> Void) = { sender in
                 try sender.send(data, timingOut: deadline)
             }
             self = .sender(closure)
             return closure
         case .receiver(let receiver):
-            let closure: (Stream throws -> Void) = { sender in
+            let closure: ((Stream) throws -> Void) = { sender in
                 let data = Drain(for: receiver, timingOut: deadline).data
                 try sender.send(data, timingOut: deadline)
             }

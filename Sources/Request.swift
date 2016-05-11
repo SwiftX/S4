@@ -50,7 +50,7 @@ extension Request {
         self.headers["Transfer-Encoding"] = "chunked"
     }
 
-    public init(method: Method = .get, uri: URI = URI(path: "/"), headers: Headers = [:], body: Stream throws -> Void) {
+    public init(method: Method = .get, uri: URI = URI(path: "/"), headers: Headers = [:], body: (Stream) throws -> Void) {
         self.init(
             method: method,
             uri: uri,

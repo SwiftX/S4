@@ -2,7 +2,7 @@ import XCTest
 @testable import S4
 
 class ExampleTests: XCTestCase {
-    static var allTests : [(String, ExampleTests -> () throws -> Void)] {
+    static var allTests : [(String, (ExampleTests) -> () throws -> Void)] {
         return [
            ("testReality", testReality),
         ]

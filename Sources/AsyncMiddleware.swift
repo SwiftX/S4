@@ -1,5 +1,5 @@
 public protocol AsyncMiddleware {
-    func respond(to request: Request, chainingTo next: AsyncResponder, result: (Void throws -> Response) -> Void)
+    func respond(to request: Request, chainingTo next: AsyncResponder, result: ((Void) throws -> Response) -> Void)
 }
 
 extension AsyncMiddleware {

@@ -2,7 +2,7 @@ import XCTest
 @testable import S4
 
 class BodyTests: XCTestCase {
-    static var allTests : [(String, BodyTests -> () throws -> Void)] {
+    static var allTests : [(String, (BodyTests) -> () throws -> Void)] {
         return [
            ("testSender", testSender),
            ("testReceiver", testReceiver),
