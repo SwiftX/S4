@@ -12,7 +12,7 @@ public enum Method {
 }
 
 extension Method {
-    init(_ rawValue: String) {
+    public init(_ rawValue: String) {
         #if swift(>=3.0)
         let method = rawValue.uppercased()
         #else
