@@ -8,6 +8,10 @@ extension Responder {
     }
 }
 
+public protocol ResponderRepresentable {
+    var responder: Responder { get }
+}
+
 public typealias Respond = (to: Request) throws -> Response
 
 public struct BasicResponder: Responder {
