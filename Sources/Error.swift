@@ -1,8 +1,8 @@
-public protocol S4Error: Error {
+public protocol HTTPError: Error {
     var status: Status { get }
 }
 
-public enum ClientError: S4Error {
+public enum ClientError: HTTPError {
     case badRequest
     case unauthorized
     case paymentRequired
@@ -66,7 +66,7 @@ extension ClientError {
     }
 }
 
-public enum ServerError: S4Error {
+public enum ServerError: HTTPError {
     case internalServerError
     case notImplemented
     case badGateway
