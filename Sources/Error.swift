@@ -1,8 +1,8 @@
-public protocol Error: ErrorProtocol {
+public protocol S4Error: Error {
     var status: Status { get }
 }
 
-public enum ClientError: Error {
+public enum ClientError: S4Error {
     case badRequest
     case unauthorized
     case paymentRequired
@@ -35,38 +35,38 @@ public enum ClientError: Error {
 extension ClientError {
     public var status: Status {
         switch self {
-        case badRequest:                   return Status.badRequest
-        case unauthorized:                 return Status.unauthorized
-        case paymentRequired:              return Status.paymentRequired
-        case forbidden:                    return Status.forbidden
-        case notFound:                     return Status.notFound
-        case methodNotAllowed:             return Status.methodNotAllowed
-        case notAcceptable:                return Status.notAcceptable
-        case proxyAuthenticationRequired:  return Status.proxyAuthenticationRequired
-        case requestTimeout:               return Status.requestTimeout
-        case conflict:                     return Status.conflict
-        case gone:                         return Status.gone
-        case lengthRequired:               return Status.lengthRequired
-        case preconditionFailed:           return Status.preconditionFailed
-        case requestEntityTooLarge:        return Status.requestEntityTooLarge
-        case requestURITooLong:            return Status.requestURITooLong
-        case unsupportedMediaType:         return Status.unsupportedMediaType
-        case requestedRangeNotSatisfiable: return Status.requestedRangeNotSatisfiable
-        case expectationFailed:            return Status.expectationFailed
-        case imATeapot:                    return Status.imATeapot
-        case authenticationTimeout:        return Status.authenticationTimeout
-        case enhanceYourCalm:              return Status.enhanceYourCalm
-        case unprocessableEntity:          return Status.unprocessableEntity
-        case locked:                       return Status.locked
-        case failedDependency:             return Status.failedDependency
-        case preconditionRequired:         return Status.preconditionRequired
-        case tooManyRequests:              return Status.tooManyRequests
-        case requestHeaderFieldsTooLarge:  return Status.requestHeaderFieldsTooLarge
+        case .badRequest:                   return Status.badRequest
+        case .unauthorized:                 return Status.unauthorized
+        case .paymentRequired:              return Status.paymentRequired
+        case .forbidden:                    return Status.forbidden
+        case .notFound:                     return Status.notFound
+        case .methodNotAllowed:             return Status.methodNotAllowed
+        case .notAcceptable:                return Status.notAcceptable
+        case .proxyAuthenticationRequired:  return Status.proxyAuthenticationRequired
+        case .requestTimeout:               return Status.requestTimeout
+        case .conflict:                     return Status.conflict
+        case .gone:                         return Status.gone
+        case .lengthRequired:               return Status.lengthRequired
+        case .preconditionFailed:           return Status.preconditionFailed
+        case .requestEntityTooLarge:        return Status.requestEntityTooLarge
+        case .requestURITooLong:            return Status.requestURITooLong
+        case .unsupportedMediaType:         return Status.unsupportedMediaType
+        case .requestedRangeNotSatisfiable: return Status.requestedRangeNotSatisfiable
+        case .expectationFailed:            return Status.expectationFailed
+        case .imATeapot:                    return Status.imATeapot
+        case .authenticationTimeout:        return Status.authenticationTimeout
+        case .enhanceYourCalm:              return Status.enhanceYourCalm
+        case .unprocessableEntity:          return Status.unprocessableEntity
+        case .locked:                       return Status.locked
+        case .failedDependency:             return Status.failedDependency
+        case .preconditionRequired:         return Status.preconditionRequired
+        case .tooManyRequests:              return Status.tooManyRequests
+        case .requestHeaderFieldsTooLarge:  return Status.requestHeaderFieldsTooLarge
         }
     }
 }
 
-public enum ServerError: Error {
+public enum ServerError: S4Error {
     case internalServerError
     case notImplemented
     case badGateway
@@ -83,17 +83,17 @@ public enum ServerError: Error {
 extension ServerError {
     public var status: Status {
         switch self {
-        case internalServerError:           return Status.internalServerError
-        case notImplemented:                return Status.notImplemented
-        case badGateway:                    return Status.badGateway
-        case serviceUnavailable:            return Status.serviceUnavailable
-        case gatewayTimeout:                return Status.gatewayTimeout
-        case httpVersionNotSupported:       return Status.httpVersionNotSupported
-        case variantAlsoNegotiates:         return Status.variantAlsoNegotiates
-        case insufficientStorage:           return Status.insufficientStorage
-        case loopDetected:                  return Status.loopDetected
-        case notExtended:                   return Status.notExtended
-        case networkAuthenticationRequired: return Status.networkAuthenticationRequired
+        case .internalServerError:           return Status.internalServerError
+        case .notImplemented:                return Status.notImplemented
+        case .badGateway:                    return Status.badGateway
+        case .serviceUnavailable:            return Status.serviceUnavailable
+        case .gatewayTimeout:                return Status.gatewayTimeout
+        case .httpVersionNotSupported:       return Status.httpVersionNotSupported
+        case .variantAlsoNegotiates:         return Status.variantAlsoNegotiates
+        case .insufficientStorage:           return Status.insufficientStorage
+        case .loopDetected:                  return Status.loopDetected
+        case .notExtended:                   return Status.notExtended
+        case .networkAuthenticationRequired: return Status.networkAuthenticationRequired
         }
     }
 }

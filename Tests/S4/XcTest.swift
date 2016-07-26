@@ -14,8 +14,8 @@ extension XCTestCase {
     }
     
 #if swift(>=3.0)
-    func waitForExpectations(delay sec: NSTimeInterval = 1, withDescription: String, callback: ((Void) -> Void) -> Void) {
-        let expectation = self.expectation(withDescription: withDescription)
+    func waitForExpectations(delay sec: TimeInterval = 1, withDescription: String, callback: ((Void) -> Void) -> Void) {
+        let expectation = self.expectation(description: withDescription)
 
         let done = {
             expectation.fulfill()
@@ -23,7 +23,7 @@ extension XCTestCase {
         
         callback(done)
         
-        self.waitForExpectations(withTimeout: sec) {
+        self.waitForExpectations(timeout: sec) {
             XCTAssertNil($0, "Timeout of \(Int(sec)) exceeded")
         }
     }

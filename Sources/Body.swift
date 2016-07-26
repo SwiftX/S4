@@ -29,7 +29,7 @@ public enum Body {
     case asyncSender((AsyncSendingStream, ((Void) throws -> Void) -> Void) -> Void)
 }
 
-public enum BodyError: ErrorProtocol {
+public enum BodyError: Error {
     case inconvertibleType
 }
 

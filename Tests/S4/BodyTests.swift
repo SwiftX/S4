@@ -8,7 +8,7 @@ class BodyTests: XCTestCase {
         ]
     }
 
-    let data: Data = [0x00, 0x01, 0x02, 0x03]
+    let data: C7.Data = [0x00, 0x01, 0x02, 0x03]
 
     func testBody() {
         let body = Body.buffer(data)

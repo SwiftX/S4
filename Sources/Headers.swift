@@ -6,7 +6,7 @@ public struct Headers {
     }
 }
 
-extension Headers: DictionaryLiteralConvertible {
+extension Headers: ExpressibleByDictionaryLiteral {
     public init(dictionaryLiteral elements: (CaseInsensitiveString, String)...) {
         var headers: [CaseInsensitiveString: String] = [:]
 
