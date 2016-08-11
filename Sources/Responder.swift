@@ -22,6 +22,6 @@ public struct BasicResponder: Responder {
     }
 
     public func respond(to request: Request) throws -> Response {
-        return try self.respond(to: request)
+        return try self.respond(request)
     }
 }
