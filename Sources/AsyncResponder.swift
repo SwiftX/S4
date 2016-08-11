@@ -12,6 +12,6 @@ public struct BasicAsyncResponder: AsyncResponder {
     }
 
     public func respond(to request: Request, result: @escaping ((Void) throws -> Response) -> Void) {
-        return self.respond(to: request, result: result)
+        return self.respond(request, result)
     }
 }
