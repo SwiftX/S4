@@ -26,7 +26,7 @@ public enum Body {
     case receiver(ReceivingStream)
     case sender((SendingStream) throws -> Void)
     case asyncReceiver(AsyncReceivingStream)
-    case asyncSender((AsyncSendingStream, ((Void) throws -> Void) -> Void) -> Void)
+    case asyncSender((AsyncSendingStream, @escaping ((Void) throws -> Void) -> Void) -> Void)
 }
 
 public enum BodyError: Error {

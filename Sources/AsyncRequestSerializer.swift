@@ -1,4 +1,4 @@
 public protocol AsyncRequestSerializer {
     init(stream: AsyncStream)
-    func serialize(_ request: Request, completion: ((Void) throws -> Void) -> Void)
+    func serialize(_ request: Request, completion: @escaping ((Void) throws -> Void) -> Void)
 }
