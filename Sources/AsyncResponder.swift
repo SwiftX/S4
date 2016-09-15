@@ -7,7 +7,7 @@ public typealias AsyncRespond = (_ to: Request, _ result: @escaping ((Void) thro
 public struct BasicAsyncResponder: AsyncResponder {
     let respond: AsyncRespond
 
-    public init(_ respond: AsyncRespond) {
+    public init(_ respond: @escaping AsyncRespond) {
         self.respond = respond
     }
 

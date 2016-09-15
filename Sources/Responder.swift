@@ -17,7 +17,7 @@ public typealias Respond = (_ to: Request) throws -> Response
 public struct BasicResponder: Responder {
     let respond: Respond
 
-    public init(_ respond: Respond) {
+    public init(_ respond: @escaping Respond) {
         self.respond = respond
     }
 
